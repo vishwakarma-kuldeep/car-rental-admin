@@ -26,27 +26,29 @@ const PORT = process.env.PORT || 5000;
 app.use(express.static("public"));
 app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ limit: "20mb", extended: true }));
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  // allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-}));
-// const CLIENT_URL =
-//   process.env.NODE_ENV === "production"
-//     ? process.env.CLIENT_URL_PROD
-//     : process.env.CLIENT_URL_DEV;
+// app.use(cors({
+//   origin: "*",
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   // allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true,
+// }));
 
-// app.use(
-//   cors({
-//     origin: CLIENT_URL,
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     credentials: true,
-//   })
-// );
-// console.log(`CORS Origin: ${CLIENT_URL}`);
-// app.options("*", cors());
+
+const CLIENT_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.CLIENT_URL_PROD
+    : process.env.CLIENT_URL_DEV;
+
+app.use(
+  cors({
+    origin: "https://carrental-server-wgny.onrender.com/",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+console.log(`CORS Origin: ${CLIENT_URL}`);
+app.options("*", cors());
 
 /**
  *  I hava removed the connect db method from here and added it to the index.js file
