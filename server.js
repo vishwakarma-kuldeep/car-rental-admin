@@ -41,7 +41,7 @@ const CLIENT_URL =
 
 app.use(
   cors({
-    origin: ["https://carrental-server-wgny.onrender.com/","http://localhost:3003"],
+    origin: ["https://carrental-server-wgny.onrender.com/","http://localhost:3000","https://carrental-server-wgny.onrender.com/","http://localhost:5173/","http://localhost:5174","http://localhost:4173/"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
